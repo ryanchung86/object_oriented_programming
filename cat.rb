@@ -7,3 +7,7 @@ class Cat
   end
 
 end
+
+buttons = Cat.new("Mr. Buttons", "mouse", 10)
+
+catlyn = Cat.new("Catlyn Stark", "cat food", 11)
