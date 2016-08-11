@@ -27,5 +27,7 @@ end
 end
 
 buttons = Cat.new("Mr. Buttons", "mice", 10)
+catlyn = Cat.new("Catlyn Stark", "cat food", 20)
 
-catlyn = Cat.new("Catlyn Stark", "cat food", 11)
+puts buttons.meow
+puts catlyn.meow
