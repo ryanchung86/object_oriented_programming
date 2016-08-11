@@ -20,8 +20,12 @@ class Cat
     end
   end
 
+def meow
+"My name is #{@name} and I eat #{@preferred_food} at #{eats_at}"
 end
 
-buttons = Cat.new("Mr. Buttons", "mouse", 10)
+end
+
+buttons = Cat.new("Mr. Buttons", "mice", 10)
 
 catlyn = Cat.new("Catlyn Stark", "cat food", 11)
