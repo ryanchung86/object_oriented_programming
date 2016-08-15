@@ -22,12 +22,14 @@ attr_accessor :experience
     # amount of money earned and updated experience is returned
     # get number of houses based on @side
     (start_address..end_address).each do |house|
-    #   if (@side == "even") && (house % 2 == 0)
-    #
-    #   end
-      @experience += 1
+      if (@side == "even") && (house % 2 == 0)
+        @experience += 1
+        @earnings = @experience * 0.25
+        
+      end
+      
     end
-
+    puts @earnings
   end
 
   def income
