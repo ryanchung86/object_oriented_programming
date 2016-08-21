@@ -1,51 +1,62 @@
 class Paperboy
 
-attr_accessor :earnings
-attr_accessor :experience
+  attr_reader :earnings
+  attr_accessor :experience
 
   def initialize(name, side)
-    # create paperboy instance
     @name = name
-    @side = side
     @experience = 0
+    @side = side
     @earnings = 0
-
   end
 
   def quota
-    # return paperboy's quota for next delivery
-    puts 50 + @experience / 2
+  # returns paperboy's quota for next delivery
+    @quota = 50 + @experience / 2
   end
 
   def deliver(start_address, end_address)
-    # start and end address is given,
-    # amount of money earned and updated experience is returned
-    # get number of houses based on @side
+  # takes two house numbers and returns $ earned on day's delivery
+  # also updates paperboy's experience
+    payday = 0
+    deliveries = 0
+
     (start_address..end_address).each do |house|
       if (@side == "even") && (house % 2 == 0)
-        @experience += 1
-        @earnings = @experience * 0.25
-        
+        payday += 0.25 if deliveries <= @quota
+        payday += 0.50 if deliveries > @quota
+        deliveries += 1
+      elsif (@side == "odd") && (house % 2 != 0)
+        payday += 0.25 if deliveries <= @quota
+        payday += 0.50 if deliveries > @quota
+        deliveries += 1
       end
-      
     end
-    puts @earnings
-  end
 
-  def income
+    @earnings += payday
+    @experience += deliveries
 
+    if deliveries < @quota
+      @earnings -= 2
+    end
+
+    return payday
   end
 
   def report
-    # return string about paperboy's performance
-    "I'm #{@name}, I've delivered #{quota} papers and I've earned"
+  # returns a strong about paperboy's performance
+    return "I'm #{@name}, I've delivered #{@experience} papers and earned $#{@earnings} so far!"
   end
 
 end
 
 tommy = Paperboy.new("Tommy", "even")
-
 tommy.quota
 tommy.deliver(101, 220)
+tommy.earnings
+tommy.report
+
+tommy.quota
+tommy.deliver(1, 150)
 tommy.earnings
 tommy.report
